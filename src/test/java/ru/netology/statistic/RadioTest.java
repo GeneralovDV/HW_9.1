@@ -8,7 +8,7 @@ public class RadioTest {
 //    Значение из интервала
     @Test
     public void shouldSetStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
         rad.setCurrentStation(5);
 
         int expected = 5;
@@ -19,9 +19,9 @@ public class RadioTest {
 //      Верхнаяя граница. Max+1.
     @Test
     public void shouldNotSetToAboveMaxStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
-        rad.setCurrentStation(10);
+        rad.setCurrentStation(15);
 
         int expected = 0;
         int actual = rad.getCurrentStation();
@@ -31,11 +31,11 @@ public class RadioTest {
 //      Верхняя граница. Max значение.
     @Test
     public void shouldSetMaxStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
-        rad.setCurrentStation(9);
+        rad.setCurrentStation(14);
 
-        int expected = 9;
+        int expected = 14;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected,actual);
@@ -44,11 +44,11 @@ public class RadioTest {
     //      Верхняя граница. Max-1.
     @Test
     public void shouldSetMaxMinusOneStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
-        rad.setCurrentStation(8);
+        rad.setCurrentStation(13);
 
-        int expected = 8;
+        int expected = 13;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected,actual);
@@ -57,7 +57,7 @@ public class RadioTest {
     //      Нижняя граница. Min.
     @Test
     public void shouldSetMinStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
         rad.setCurrentStation(0);
 
@@ -70,7 +70,7 @@ public class RadioTest {
     //      Нижняя граница. Min-1.
     @Test
     public void shouldNotSetMinMinusOneStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
         rad.setCurrentStation(-1);
 
@@ -83,7 +83,7 @@ public class RadioTest {
     //      Верхняя граница. Min+1.
     @Test
     public void shouldSetMinPlusOneStation() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
         rad.setCurrentStation(1);
 
@@ -96,12 +96,12 @@ public class RadioTest {
     //      Следующая от max-1 до max
     @Test
     public void nextStationToMax() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
-        rad.setCurrentStation(8);
+        rad.setCurrentStation(13);
         rad.next();
 
-        int expected = 9;
+        int expected = 14;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected,actual);
@@ -110,9 +110,9 @@ public class RadioTest {
     //      Следующая от max до max+1
     @Test
     public void nextStationAboveMax() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
-        rad.setCurrentStation(9);
+        rad.setCurrentStation(14);
         rad.next();
 
         int expected = 0;
@@ -121,10 +121,10 @@ public class RadioTest {
         Assertions.assertEquals(expected,actual);
     }
 
-    //      Следующая от min+1 до min
+    //      Предыдущая от min+1 до min
     @Test
     public void previousStationToMin() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
         rad.setCurrentStation(1);
         rad.previous();
@@ -138,12 +138,12 @@ public class RadioTest {
     //      Следующая от min до min-1
     @Test
     public void previousStationLessMin() {
-        Radio rad = new Radio();
+        Radio rad = new Radio(15);
 
         rad.setCurrentStation(0);
         rad.previous();
 
-        int expected = 9;
+        int expected = 14;
         int actual = rad.getCurrentStation();
 
         Assertions.assertEquals(expected,actual);
